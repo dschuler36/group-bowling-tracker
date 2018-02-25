@@ -1,0 +1,29 @@
+<html>
+    {% extends "base.html" %}
+    <head>
+        {% block title %}Group Bowling Tracker{% endblock %}
+    </head>
+    {% block content %}
+    <body align="center">
+        <div>
+            <h2>Register here:</h2>
+            <form>
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="username" class="form-control" id="username">
+                </div>
+                <div class="form-group">
+                        <label for="email">Email Address:</label>
+                        <input type="email" class="form-control" id="email">
+                </div>
+                <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" id="password">
+                    </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+
+        </div>
+    </body>
+    {% endblock %}
+</html> 
