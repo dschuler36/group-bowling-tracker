@@ -1,6 +1,6 @@
-from wtforms import Form, validators, TextField
+from wtforms import Form, validators, TextField, PasswordField
 
 class RegistrationForm(Form): 
-    username = TextField('username', [validators.required()])
-    email = TextField('email')
-    password = TextField('password')
+    username = TextField('Username', [validators.required()])
+    email = TextField('Email')
+    password = PasswordField('Password')
