@@ -1,30 +1,27 @@
-<html>
-    {% extends "base.html" %}
-    <head>
-        {% block title %}Group Bowling Tracker{% endblock %}
-    </head>
-    {% block body %}
-    <body align="center">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
-            {% if messages %}
-              {% for category, message in messages %}
-                <div class="alert alert-{{ category }} alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                {{ message }}
-                </div>
-              {% endfor %}
-            {% endif %}
-        {% endwith %}
-        <div align="center">
-            <h1>Group Bowling Tracker</h1>
-            <br/>
-            <p>Let's roll.</p>
-            <br/>
-            <p><a href="/register">Sign up here.</a></p>
-            <p><a href="/login">Log in here.</a></p>
-        </div>
-    </body>
-    {% endblock %}
-
-</html>
+{% extends "header.html" %}
+<head>
+    {% block title %}Group Bowling Tracker{% endblock %}
+</head>
+{% block content %}
+<body align="center">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+        {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <div align="center" class="jumbotron">
+        <h1>Group Bowling Tracker</h1>
+        <br/>
+        <p>Let's roll.</p>
+        <br/>
+        <p><a href="/register">Sign up here.</a></p>
+        <p><a href="/login">Log in here.</a></p>
+    </div>
+</body>
+{% endblock %}

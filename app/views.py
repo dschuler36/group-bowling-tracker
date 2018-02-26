@@ -1,12 +1,12 @@
 from flask import render_template
 from flask import Flask, render_template, flash, request, url_for, redirect, session
 from wtforms import Form, BooleanField, TextField, PasswordField, validators
+from flask_login import login_user, logout_user, current_user, login_required
 from passlib.hash import sha256_crypt
 import sqlite3
 import os
-# from MySQLdb import escape_string as thwart
 import gc
-from .forms import RegistrationForm
+from .forms import RegistrationForm, LoginForm
 from app import app
 
 def db_conn():
@@ -18,7 +18,7 @@ def db_conn():
 
 
 @app.route('/')
-def home_page():
+def index():
     return render_template('homepage.html')
 
 
@@ -52,7 +52,7 @@ def register_page():
                 session['username'] = username
 
                 flash("Thanks for registering!", "success")
-                return redirect(url_for('home_page'))
+                return redirect(url_for('index'))
 
         return render_template("register.html", form=form)
 
@@ -60,5 +60,17 @@ def register_page():
         return(str(e))
 
 @app.route("/login/", methods=["GET","POST"])
-def login_page(): 
+def login(): 
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = LoginForm(request.form)
+    if request.method == "POST" and form.validate():
+        # Log in the user
+        flash('Logged in successfully!')
+        return redirect(url_for('index'))
+
     return render_template("login.html")
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)

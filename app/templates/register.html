@@ -1,9 +1,9 @@
 <html>
-    {% extends "base.html" %}
+    {% extends "header.html" %}
     <head>
         {% block title %}Group Bowling Tracker{% endblock %}
     </head>
-    {% block body %}
+    {% block content %}
     <body align="center">
         {% with messages = get_flashed_messages(with_categories=true) %}
             <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
